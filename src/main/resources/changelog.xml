@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet id="1" author="mike">
+        <createTable tableName="CONTACT">
+            <column name="ID" type="numeric(19, 0)"/>
+            <column name="P_NAME" type="varchar(255)"/>
+            <column name="URL" type="varchar(1024)"/>
+            <column name="DUBLICATE" type="numeric(1, 0)"/>
+        </createTable>
+        <!-- This table for caching pictures-->
+        <createTable tableName="PICTURES">
+            <column name="ID" type="numeric(19, 0)"/>
+            <column name="url" type="varchar(1024)"/>
+            <column name="EXPIRE_DATE" type="timestamp"/>
+        </createTable>
+        <createSequence sequenceName="HIBERNATE_SEQUENCE" startValue="1" incrementBy="1"/>
+    </changeSet>
+</databaseChangeLog>
