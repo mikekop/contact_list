@@ -72,8 +72,10 @@ app.controller('ContactListCtrl', ['$scope','ContactListService',
                 $scope.loadData();
             });
             $scope.gridApi.core.on.filterChanged($scope, function() {
-                paginationOptions.filter = this.grid.columns[0].filters[0].term;
-                $scope.loadData();
+                if (this.grid.columns[0].filters[0].term.length > 2) {
+                    paginationOptions.filter = this.grid.columns[0].filters[0].term;
+                    $scope.loadData();
+                }
             });
         }
     };
