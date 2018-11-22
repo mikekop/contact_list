@@ -23,7 +23,7 @@ public class ContactListServiceImpl implements ContactListService {
             return new PageImpl<>(res);
         } else {
             if (sortField == null || sortField.isEmpty())
-                sortField = "name";
+                sortField = "id";
             return repository.findAllUnique(PageRequest.of(pageNumber, pageSize, Sort.by(new Sort.Order(asc ? Sort.Direction.ASC : Sort.Direction.DESC, sortField))));
 
         }

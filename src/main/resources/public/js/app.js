@@ -12,7 +12,7 @@ app.controller('ContactListCtrl', ['$scope','ContactListService',
                 columnName: 'name',
                 isAscending: true
             },
-            filter: null
+            filter: ''
         };
 
     ContactListService.list(
@@ -64,7 +64,8 @@ app.controller('ContactListCtrl', ['$scope','ContactListService',
             });
             $scope.gridApi.core.on.sortChanged($scope, function(grid, sortColumns) {
                 if (sortColumns.length == 0) {
-                    paginationOptions.sort = null;
+                    paginationOptions.sort.columnName = '';
+                    paginationOptions.sort.isAscending = true;
                 } else {
                     paginationOptions.sort.columnName = sortColumns[0].name;
                     paginationOptions.sort.isAscending = sortColumns[0].sort.direction == 'asc' ? true : false;
@@ -73,7 +74,7 @@ app.controller('ContactListCtrl', ['$scope','ContactListService',
             });
             $scope.gridApi.core.on.filterChanged($scope, function() {
                 if (this.grid.columns[0].filters[0].term.length > 2) {
-                    paginationOptions.filter = this.grid.columns[0].filters[0].term;
+                    paginationOptions.filter = this.grid.columns[0].filters[0].term != null ? this.grid.columns[0].filters[0].term : '';
                     $scope.loadData();
                 }
             });
